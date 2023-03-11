@@ -27,7 +27,7 @@ export function LogIn() {
     setError();
     try {
       await logIn(userForm.email, userForm.password);
-      navigate("/home");
+      navigate("/netflix/home");
     } catch (error) {
       console.log(error.message);
       if (error.message === "Firebase: Error (auth/user-not-found).")
@@ -39,7 +39,7 @@ export function LogIn() {
 
   const loginGoogle=async()=>{
     await loginWithGoogle()
-    navigate('/home')
+    navigate('/netflix/home')
   }
 
   return (

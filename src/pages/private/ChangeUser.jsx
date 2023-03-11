@@ -20,7 +20,7 @@ export default function ChangeUser() {
     <section className='bg-[#1b1b1b] text-white w-full h-screen flex flex-col items-center justify-center'>
       <h2 className='text-[30px] mb-5 text-center'>¿Quién está viendo ahora?</h2>
       <article className='w-full max-[930px]:w-[90%] flex justify-center gap-10 max-[745px]:flex-wrap'>
-        <Link to='/home'>
+        <Link to='/netflix/home'>
             <div onClick={handleChange} className='w-[150px] cursor-pointer h-full max-[930px]:w-[100px]'>
                 <img className='' src={img2} />
                 <p className='text-center mt-3'>{user.displayName || 'Usuario'}</p>
@@ -28,7 +28,7 @@ export default function ChangeUser() {
         </Link>
         {
             newUser.map(user => (
-                <Link key={user.color} to='/home'>
+                <Link key={user.color} to='/netflix/home'>
                   <div onClick={()=>selectedUser(user)} className='w-[150px] cursor-pointer h-full max-[930px]:w-[100px]'>
                     <img alt='' src={user.color} />
                     <p className='text-center mt-3'>{user.userName}</p>
@@ -39,7 +39,7 @@ export default function ChangeUser() {
         {
           newUser.length == 3 ?
           null :
-          <Link to='/createUser'>
+          <Link to='/netflix/createUser'>
             <div className='w-[150px] grid place-content-center h-full max-[930px]:w-[100px]'>
                 <img className='w-full cursor-pointer' src={addUser} />
             </div>

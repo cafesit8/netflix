@@ -15,7 +15,7 @@ export default function CreateUser() {
 
     const handleSubmitForm = (data)=>{
       addNewUserLocalStorage(data)
-      navigate('/changeUser')
+      navigate('/netflix/changeUser')
     }
 
     const handleInput=(e)=>{

@@ -27,7 +27,7 @@ export function Register() {
     setError();
     try {
       await singUp(userForm.email, userForm.password);
-      navigate("/login");
+      navigate("/netflix/login");
     } catch (error) {
       if (
         error.message ===

@@ -26,7 +26,7 @@ export function Avatar() {
       </div>
     );
   }
-  if (userSelected.color === "/src/img/avatarNetflixAzul.jpg") {
+  if (userSelected.color === "/netflix/src/img/avatarNetflixAzul.jpg") {
     return (
       <div className="flex flex-col items-center">
         <img
@@ -37,7 +37,7 @@ export function Avatar() {
       </div>
     );
   }
-  if (userSelected.color === "/src/img/avatarNetflixAmarillo.jpg") {
+  if (userSelected.color === "/netflix/src/img/avatarNetflixAmarillo.jpg") {
     return (
       <div className="flex flex-col items-center">
         <img
@@ -48,7 +48,7 @@ export function Avatar() {
       </div>
     );
   }
-  if (userSelected.color === "/src/img/avatarNetflixVerde.jpg") {
+  if (userSelected.color === "/netflix/src/img/avatarNetflixVerde.jpg") {
     return (
       <div className="flex flex-col items-center">
         <img

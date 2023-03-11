@@ -3,7 +3,6 @@ import img1 from '../../img/homeStrangerThings.jpg'
 import '../../styles/Private/home.css'
 import logo from '../../img/icons8-netflix-144.svg'
 import { Btn } from '../../components/Btn'
-import {SwiperApp} from '../../components/Home/Swiper'
 import {Avatar} from '../../components/Home/Avatar'
 import {IoLogOut} from 'react-icons/io5'
 import { useContext } from 'react'
@@ -24,7 +23,7 @@ export function Home() {
             <li className='text-[20px] font-bold max-[600px]:font-normal cursor-pointer'>Series</li>
           </ul>
           <div className='flex items-center gap-5'>
-              <Link to='/changeUser'>
+              <Link to='/netflix/changeUser'>
                 <Avatar />
               </Link>
               <div onClick={logOut} className='flex flex-col'>
