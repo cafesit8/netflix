@@ -11,14 +11,14 @@ import CreateUser from "./pages/private/CreateUser";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Welcome />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<LogIn />} />
+      <Route path="/netflix" element={<Welcome />} />
+      <Route path="/netflix/register" element={<Register />} />
+      <Route path="/netflix/login" element={<LogIn />} />
       <Route path="*" element={<NotFound />} />
       <Route element={<ProtectedRoute />}>
-        <Route path="/home" element={<Home />} />
-        <Route path="/changeUser" element={<ChangeUser />} />
-        <Route path="/createUser" element={<CreateUser />} />
+        <Route path="/netflix/home" element={<Home />} />
+        <Route path="/netflix/changeUser" element={<ChangeUser />} />
+        <Route path="/netflix/createUser" element={<CreateUser />} />
       </Route>
     </Routes>
   );
