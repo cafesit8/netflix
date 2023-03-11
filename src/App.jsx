@@ -11,7 +11,7 @@ import CreateUser from "./pages/private/CreateUser";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Welcome />} />
+      <Route path="/netflix-app/" element={<Welcome />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<LogIn />} />
       <Route path="*" element={<NotFound />} />
