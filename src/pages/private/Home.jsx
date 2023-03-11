@@ -27,7 +27,7 @@ export function Home() {
                 <Avatar />
               </Link>
               <div onClick={logOut} className='flex flex-col'>
-                <IoLogOut className='text-[50px] m-auto' />
+                <IoLogOut className='text-[50px] m-auto cursor-pointer' />
                 <span className='text-center'>Salir</span>
               </div>
           </div>
