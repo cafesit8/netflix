@@ -20,7 +20,7 @@ export function Welcome() {
               <TfiWorld />
               Español
             </span>
-            <Link to="/login">
+            <Link to="/netflix/login">
               <Btn className="cursor-pointer" text="Iniciar Sesión" />
             </Link>
           </div>
@@ -36,7 +36,7 @@ export function Welcome() {
             ¿Quieres ver Netflix ya? Registrarte con nosotros y obtén tu
             membresía de Netflix
           </h5>
-          <Link to="/register">
+          <Link to="/netflix/register">
             <button className="bg-[#e50914] py-1 text-[20px] px-5 text-white rounded-lg">
               Registrate
             </button>
