@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { Context } from '../../context/Context'
@@ -9,7 +9,7 @@ import amarillo from '../../img/avatarNetflixAmarillo.jpg'
 import verde from '../../img/avatarNetflixVerde.jpg'
 
 export default function CreateUser() {
-    const {addNewUserLocalStorage, newUser} = useContext(Context)
+    const {addNewUserLocalStorage} = useContext(Context)
     const {register, formState: {errors}, handleSubmit} = useForm()
     const navigate = useNavigate()
 
