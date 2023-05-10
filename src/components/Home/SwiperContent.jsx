@@ -1,4 +1,3 @@
-import React, { Suspense } from 'react'
 
 export function SwiperContent({img}) {
   return (

@@ -1,36 +1,30 @@
-import { async } from '@firebase/util'
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
-import React, { createContext, useEffect, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import {auth} from '../firebase/firebase'
 
 export const Context = createContext()
 
 export function ContextProvider(props) {
   const [user, setUser] = useState(null)
+  const [userList, setUserList] = useState([]);
+  const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useState(true)
-  const [newUser, setNewUser] = useState([])
-  const [userSelected, setUserSelected] = useState()
 
-  //user seleccionado
-  const selectedUser=(userSelected)=>{
-    setUserSelected(userSelected)
-  }
-
-  //capturar el usuario nuevo recién creado
-  const addNewUserLocalStorage = (data)=>{
-    //console.log(data)
-    setNewUser([...newUser, data])
+  const addUserToTheList = (data) => {
+    setUserList([
+      ...userList,
+      {
+        userName: data.userName,
+        photo: data.color,
+      },
+    ]);
   }
 
   // registro
-  const singUp=(email, password)=>{
-    return createUserWithEmailAndPassword(auth, email, password)
-  }
+  const singUp = (email, password) => createUserWithEmailAndPassword(auth, email, password)
 
   // Inicio de sesión
-  const logIn=(email, password)=>{
-    return signInWithEmailAndPassword(auth, email, password)
-  }
+  const logIn = (email, password) => signInWithEmailAndPassword(auth, email, password)
 
   //Inicio de sesión con google
   const loginWithGoogle=()=>{
@@ -39,15 +33,15 @@ export function ContextProvider(props) {
   }
 
   //cierre de sesion
-  const logOut= async()=>{
-    await signOut(auth)
-    setNewUser([])
-    setUserSelected()
-  }
+  const logOut = async () => await signOut(auth)
 
   useEffect(()=>{
-      onAuthStateChanged(auth, (currentUSer)=>{
-        setUser(currentUSer)
+      onAuthStateChanged(auth, (currentUser)=>{
+        setUser(currentUser)
+        setPhoto({
+          photo: currentUser.photoURL,
+          userName:  currentUser.displayName,
+        })
         setLoading(false)
       })
   }, [])
@@ -60,11 +54,10 @@ export function ContextProvider(props) {
       loading,
       loginWithGoogle,
       logOut,
-      setNewUser,
-      addNewUserLocalStorage,
-      newUser,
-      selectedUser,
-      userSelected
+      photo,
+      addUserToTheList,
+      userList,
+      setPhoto,
     }}>
       {props.children}
     </Context.Provider>

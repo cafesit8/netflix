@@ -1,37 +1,35 @@
-import { Link } from 'react-router-dom'
-import img1 from '../../img/homeStrangerThings.jpg'
-import '../../styles/Private/home.css'
-import logo from '../../img/icons8-netflix-144.svg'
+import { Suspense, lazy, useContext, useEffect, useMemo, useState } from 'react'
+import { Loading } from '../public/Loading'
 import { Btn } from '../../components/Btn'
-import {Avatar} from '../../components/Home/Avatar'
-import {IoLogOut} from 'react-icons/io5'
-import { useContext } from 'react'
+import NavBar from '../../components/NavBar'
+import img1 from '../../img/homeStrangerThings.webp'
+import '../../styles/Private/home.css'
+import { collection, getDocs } from 'firebase/firestore'
+import { db } from '../../firebase/firebase'
 import { Context } from '../../context/Context'
-import SwiperContentTotal from '../../components/Home/SwiperContentTotal'
+const SwiperContentTotal = lazy(() => import('../../components/Home/SwiperContentTotal'))
 
 
 export function Home() {
-  const {logOut} = useContext(Context)
+  const [images, setImages] = useState([]);
+  const { user } = useContext(Context)
+  console.log(user)
+
+  useEffect(() => {
+    if(user){
+      const queryCollection = collection(db, "homePage");
+      getDocs(queryCollection).then((res) => {
+        const results = res.docs.map((item) => ({ id: item.id, ...item.data() }));
+        setImages(results);
+        console.log(results)
+      })
+    }
+  }, [user])
+
   return (
     <>
       <section className='home-section1 w-full h-screen relative flex flex-col bg-black text-white'>
-        <nav className='z-20 w-full flex justify-between items-center px-[5%] fixed h-[100px]'>
-          <img src={logo} className='max-[650px]:w-[100px] max-[360px]:w-[80px]' />
-          <ul className='list flex items-center gap-20 max-[800px]:gap-4'>
-            <li className='text-[20px] font-bold max-[600px]:font-normal cursor-pointer'>Incio</li>
-            <li className='text-[20px] font-bold max-[600px]:font-normal cursor-pointer'>Películas</li>
-            <li className='text-[20px] font-bold max-[600px]:font-normal cursor-pointer'>Series</li>
-          </ul>
-          <div className='flex items-center gap-5'>
-              <Link to='/netflix/changeUser'>
-                <Avatar />
-              </Link>
-              <div onClick={logOut} className='flex flex-col'>
-                <IoLogOut className='text-[50px] m-auto cursor-pointer' />
-                <span className='text-center'>Salir</span>
-              </div>
-          </div>
-        </nav>
+        <NavBar />
         <div className='absolute degradate w-full h-screen flex items-center z-10'>
             <article className='w-[70%] ml-[5%] max-[500px]:w-full max-[500px]:ml-0 max-[500px]:p-4 z-30'>
                 <div className=''>
@@ -53,9 +51,12 @@ export function Home() {
         </picture>
       </section>
       <section className='w-full py-32 bg-black text-white max-[500px]:py-5 flex flex-col gap-14'>
-          <SwiperContentTotal />
-          <SwiperContentTotal />
-          <SwiperContentTotal />
+          <Suspense fallback={<Loading />}>
+            <SwiperContentTotal images={images} />
+            <SwiperContentTotal images={images} />
+            <SwiperContentTotal images={images} />
+            <SwiperContentTotal images={images} />
+          </Suspense>
       </section>
       <footer className='w-full text-white grid place-content-center bg-black py-7'>
             <div>
