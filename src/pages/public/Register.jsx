@@ -1,7 +1,7 @@
 import { async } from "@firebase/util";
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Btn } from "../../components/Btn";
 import { Input } from "../../components/Login/Input";
 import { Context } from "../../context/Context";
@@ -52,6 +52,7 @@ export function Register() {
         {error && (
           <span className="text-center text-red-500 text-[15px]">{error}</span>
         )}
+        <Link to='/' className="text-red-500 underline text-end text-lg cursor-pointer">Volver</Link>
       </form>
     </section>
   );

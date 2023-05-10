@@ -8,7 +8,7 @@ export default function ChangeUser() {
   const { userList, setPhoto, user } = useContext(Context);
 
   return (
-    <section className="bg-[#1b1b1b] text-white w-full h-screen flex flex-col items-center justify-center">
+    <section className="bg-[#0c0c0c] text-white w-full h-screen flex flex-col items-center justify-center">
       <h2 className="text-[30px] mb-5 text-center">
         ¿Quién está viendo ahora?
       </h2>

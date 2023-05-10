@@ -33,7 +33,10 @@ export function ContextProvider(props) {
   }
 
   //cierre de sesion
-  const logOut = async () => await signOut(auth)
+  const logOut = async () => {
+    await signOut(auth)
+    localStorage.removeItem('homePage')
+  }
 
   useEffect(()=>{
       onAuthStateChanged(auth, (currentUser)=>{

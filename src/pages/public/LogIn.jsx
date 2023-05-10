@@ -2,13 +2,13 @@ import { useContext, useState } from "react";
 import "../../styles/Public/login.css";
 import { Btn } from "../../components/Btn";
 import { Context } from "../../context/Context";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Input } from "../../components/Login/Input";
 import {FcGoogle} from 'react-icons/fc'
 
 export function LogIn() {
   const navigate = useNavigate();
-  const { logIn, user, loginWithGoogle } = useContext(Context);
+  const { logIn, loginWithGoogle } = useContext(Context);
   const [error, setError] = useState();
   const [userForm, setUserForm] = useState({
     email: "",
@@ -54,6 +54,7 @@ export function LogIn() {
         {error && <span className="text-[15px] text-red-500">{error}</span>}
         <Btn text="Iniciar Sesión" />
         <button onClick={loginGoogle} className="bg-[#e50914] py-1 px-4 text-[16px] flex rounded-lg justify-center items-center">Inicia con tu cuenta <FcGoogle className="text-[25px] ml-2"/></button>
+        <Link to='/' className="text-red-500 underline text-end text-lg cursor-pointer">Volver</Link>
       </form>
       <div className="shadow"></div>
     </section>
