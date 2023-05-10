@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import img2 from '../img/avatarNetflix.png'
 
 export default function Avatar({photo}) {
   return (

@@ -1,4 +1,4 @@
-import { Suspense, lazy, useContext, useEffect, useMemo, useState } from 'react'
+import { Suspense, lazy, useContext, useEffect, useState } from 'react'
 import { Loading } from '../public/Loading'
 import { Btn } from '../../components/Btn'
 import NavBar from '../../components/NavBar'
@@ -21,7 +21,7 @@ export function Home() {
       getDocs(queryCollection).then((res) => {
         const results = res.docs.map((item) => ({ id: item.id, ...item.data() }));
         setImages(results);
-        console.log(results)
+        // console.log(results)
       })
     }
   }, [user])
