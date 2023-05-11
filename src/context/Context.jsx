@@ -1,21 +1,24 @@
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useEffect, useRef, useState } from 'react'
 import {auth} from '../firebase/firebase'
+import { v4 } from 'uuid'
 
 export const Context = createContext()
 
-export function ContextProvider(props) {
+export function ContextProvider({children}) {
   const [user, setUser] = useState(null)
   const [userList, setUserList] = useState([]);
   const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useState(true)
+  const refUserName = useRef(null)
 
   const addUserToTheList = (data) => {
     setUserList([
       ...userList,
       {
         userName: data.userName,
-        photo: data.color,
+        photo: data.photo,
+        id: v4(),
       },
     ]);
   }
@@ -39,11 +42,13 @@ export function ContextProvider(props) {
   }
 
   useEffect(()=>{
+      const userName = JSON.parse(localStorage.getItem('userName'))
+      refUserName.current = userName
       onAuthStateChanged(auth, (currentUser)=>{
         setUser(currentUser)
         setPhoto({
           photo: currentUser.photoURL,
-          userName:  currentUser.displayName,
+          userName: currentUser.displayName || refUserName.current || 'usuario',
         })
         setLoading(false)
       })
@@ -61,8 +66,10 @@ export function ContextProvider(props) {
       addUserToTheList,
       userList,
       setPhoto,
+      refUserName,
+      setUserList
     }}>
-      {props.children}
+      {children}
     </Context.Provider>
   )
 }

@@ -19,6 +19,7 @@ function App() {
         <Route path="/netflix/home" element={<Home />} />
         <Route path="/netflix/changeUser" element={<ChangeUser />} />
         <Route path="/netflix/createUser" element={<CreateUser />} />
+        <Route path="/netflix/createUser/:id" element={<CreateUser />} />
       </Route>
     </Routes>
   );

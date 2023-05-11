@@ -1,13 +1,11 @@
-import { async } from "@firebase/util";
 import { useContext, useState } from "react";
-import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Btn } from "../../components/Btn";
 import { Input } from "../../components/Login/Input";
 import { Context } from "../../context/Context";
 
 export function Register() {
-  const { singUp, user } = useContext(Context);
+  const { singUp, refUserName } = useContext(Context);
   const [error, setError] = useState();
   const [userForm, setUserForm] = useState({
     email: "",
@@ -21,6 +19,11 @@ export function Register() {
       [e.target.name]: e.target.value,
     });
   };
+
+  function handleChangeUserName(e){
+    refUserName.current = e.target.value
+    localStorage.setItem('userName', JSON.stringify(e.target.value))
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,6 +51,7 @@ export function Register() {
         <h3 className="text-center text-[25px]">Registrate con Nosotros</h3>
         <Input handle={handleChange} type="email" name="email" place='Ingrese correo' />
         <Input handle={handleChange} type="password" name="password" place='Ingrese contraseña' />
+        <Input handle={handleChangeUserName} type="text" name="userName" place='Nombre de Usuario' />
         <Btn text="Registrar" />
         {error && (
           <span className="text-center text-red-500 text-[15px]">{error}</span>

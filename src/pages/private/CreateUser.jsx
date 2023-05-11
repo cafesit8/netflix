@@ -1,6 +1,6 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
 import { Context } from "../../context/Context";
 
 //avatar
@@ -9,16 +9,36 @@ import amarillo from "../../img/avatarNetflixAmarillo.jpg";
 import verde from "../../img/avatarNetflixVerde.jpg";
 
 export default function CreateUser() {
-  const { addUserToTheList } = useContext(Context);
+  const { addUserToTheList, userList, setUserList } = useContext(Context);
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const [userFound, setUserFound] = useState({
+    userName: '',
+    photo: '',
+    id: ''
+  });
+
   const navigate = useNavigate();
+  const {id} = useParams()
+
+  useEffect(() => {
+    if(id){
+      const found = userList.find(user => user.id === id)
+      setUserFound(found)
+    }
+  }, [])
 
   const handleSubmitForm = (data) => {
-    addUserToTheList(data)
+    if(id){
+      const found = userList.find(user => user.id === id)
+      found.userName = data.userName
+      found.photo = data.photo
+    }else{
+      addUserToTheList(data)
+    }
     navigate("/netflix/changeUser");
   };
 
@@ -28,9 +48,10 @@ export default function CreateUser() {
         onSubmit={handleSubmit(handleSubmitForm)}
         className="w-[500px] flex flex-col gap-5 bg-[#292929] px-4 py-6 max-[520px]:w-[90%]"
       >
-        <h3 className="text-white text-[30px] text-center">Crear Usuario</h3>
+        <h3 className="text-white text-[30px] text-center">{id ? 'Editar Usuario' : 'Crear Usuario'}</h3>
         <div>
           <input
+            defaultValue={userFound?.userName}
             name="userName"
             className="bg-transparent border py-2 px-4 w-full rounded-md"
             placeholder="Nombre de Usuario"
@@ -51,15 +72,15 @@ export default function CreateUser() {
           <select
             name="color"
             className="bg-[#292929] border outline-none text-white rounded-lg py-2 px-3"
-            {...register("color")}
+            {...register("photo")}
           >
-            <option value={azul}>Azul</option>
-            <option value={amarillo}>Amarillo</option>
-            <option value={verde}>Verde</option>
+            <option selected={userFound?.photo === azul} value={azul}>Azul</option>
+            <option selected={userFound?.photo === amarillo} value={amarillo}>Amarillo</option>
+            <option selected={userFound?.photo === verde} value={verde}>Verde</option>
           </select>
         </div>
         <button className="bg-[#e50914] py-2 rounded-lg">
-          Guardar Usuario
+          {id ? 'Actualizar' : 'Guardar'}
         </button>
         <Link
           to="/netflix/home"
