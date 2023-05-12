@@ -1,1 +1,0 @@
-import{a as e,j as t}from"./index-ab7c928d.js";function r(){return e("footer",{className:"w-full text-white grid place-content-center bg-black py-7",children:t("div",{children:[t("p",{children:["Hecho por ",e("span",{className:"font-bold",children:"@Cafecito"})]}),e("p",{className:"text-center",children:"2023"})]})})}export{r as default};
