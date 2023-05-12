@@ -13,7 +13,7 @@ export default function Avatar({ user }) {
     setUserList(newList);
   }
 
-  const editProfile = () => navigate(`/netflix/createUser/${user.id}`)
+  const editProfile = () => navigate(`/createUser/${user.id}`)
 
   return (
     <div key={user.photo} className="relative">
@@ -22,7 +22,7 @@ export default function Avatar({ user }) {
         onClick={handleDelete}
         className="absolute -right-4 -top-4 w-[35px] h-[35px] text-white/50 hover:text-white duration-150 z-10 cursor-pointer"
       />
-      <Link to="/netflix/home">
+      <Link to="/home">
         <div
           onClick={() => setPhoto(user)}
           className="w-[150px] cursor-pointer h-full max-[930px]:w-[100px] relative"

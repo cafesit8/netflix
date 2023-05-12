@@ -14,7 +14,7 @@ export default function ChangeUser() {
         ¿Quién está viendo ahora?
       </h2>
       <article className="w-full max-[930px]:w-[90%] flex justify-center gap-10 max-[745px]:flex-wrap">
-        <Link to="/netflix/home">
+        <Link to="/home">
           <div
             onClick={() =>
               setPhoto({
@@ -36,7 +36,7 @@ export default function ChangeUser() {
           <Avatar key={user.id} user={user}/>
         ))}
         {userList.length <= 3 && (
-          <Link to="/netflix/createUser">
+          <Link to="/createUser">
             <div className="w-[150px] grid place-content-center h-full max-[930px]:w-[100px]">
               <img
                 className="w-full cursor-pointer"

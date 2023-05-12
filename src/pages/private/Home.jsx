@@ -1,16 +1,14 @@
 import { Suspense, lazy, useEffect, useState } from "react";
 import { Loading } from "../public/Loading";
 import { Btn } from "../../components/Btn";
-import NavBar from "../../components/NavBar";
 import img1 from "../../img/homeStrangerThings.webp";
 import "../../styles/Private/home.css";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
 import { CardPresentation } from "../../components/CardPresentation";
-const SwiperContentTotal = lazy(() =>
-  import("../../components/Home/SwiperContentTotal")
-);
+const SwiperContentTotal = lazy(() => import("../../components/Home/SwiperContentTotal"));
 const Footer = lazy(() => import("../../components/Footer"));
+const Nav = lazy(() => import('../../components/NavBar'))
 
 export function Home() {
   const [images, setImages] = useState(null);
@@ -35,7 +33,7 @@ export function Home() {
   return (
     <>
       <section className="home-section1 w-full h-screen relative flex flex-col bg-black text-white">
-        <NavBar />
+        <Nav />
         <CardPresentation>
           <div className="">
             <span className="text-[25px] text-white font-normal max-[500px]:text-[20px]">

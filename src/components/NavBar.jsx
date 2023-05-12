@@ -3,17 +3,18 @@ import logo from '../img/icons8-netflix-144.svg'
 import Avatar from "./Avatar";
 import { useContext } from "react";
 import { Context } from "../context/Context";
+import { Link } from 'react-router-dom'
 
 
-export default function NavBar() {
+export default function() {
   const {logOut, photo} = useContext(Context)
 
   return (
-    <nav className='z-20 w-full flex justify-between items-center px-[5%] fixed h-[100px] backdrop-filter backdrop-blur-[3px]'>
+    <nav className='z-20 w-full flex justify-between items-center px-[5%] fixed h-[80px]'>
       <img alt="logo Netflix" fetchpriority="high" src={logo} className="max-[650px]:w-[100px] max-[360px]:w-[80px]" />
       <ul className="list flex items-center gap-20 max-[800px]:gap-4">
         <li className="text-[20px] font-bold max-[600px]:font-normal cursor-pointer">
-          Inicio
+          <Link to='/home'>Inicio</Link>
         </li>
         <li className="text-[20px] font-bold max-[600px]:font-normal cursor-pointer">
           Películas

@@ -39,7 +39,7 @@ export default function CreateUser() {
     }else{
       addUserToTheList(data)
     }
-    navigate("/netflix/changeUser");
+    navigate("/changeUser");
   };
 
   return (
@@ -57,14 +57,14 @@ export default function CreateUser() {
             placeholder="Nombre de Usuario"
             {...register("userName", {
               required: true,
-              minLength: 5,
+              minLength: 3,
             })}
           />
           {errors.userName?.type === "required" && (
             <span className="text-red-500 ml-1">Este campo es requerido</span>
           )}
           {errors.userName?.type === "minLength" && (
-            <span className="text-red-500 ml-1">Mïnimo son 5 carateres</span>
+            <span className="text-red-500 ml-1">Mïnimo son 3 carateres</span>
           )}
         </div>
         <div className="flex flex-col">
@@ -84,7 +84,7 @@ export default function CreateUser() {
           {id ? 'Actualizar' : 'Guardar'}
         </button>
         <Link
-          to="/netflix/home"
+          to="/home"
           className="text-red-400 underline text-end text-lg"
         >
           Volver al Inicio
