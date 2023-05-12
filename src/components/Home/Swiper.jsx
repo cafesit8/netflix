@@ -11,7 +11,7 @@ import "swiper/css/free-mode";
 import { FreeMode } from "swiper";
 import { SwiperContent } from "./SwiperContent";
 
-export function SwiperApp({ images }) {
+export default function ({ values }) {
   return (
     <Swiper
       grabCursor={true}
@@ -38,22 +38,25 @@ export function SwiperApp({ images }) {
       }}
     >
       <SwiperSlide className="slide">
-        <SwiperContent img={images[0]?.img3} />
+        <SwiperContent img={values[0]} />
       </SwiperSlide>
       <SwiperSlide className="slide">
-        <SwiperContent img={images[1]?.img2} />
+        <SwiperContent img={values[1]} />
       </SwiperSlide>
       <SwiperSlide className="slide">
-        <SwiperContent img={images[2]?.img6} />
+        <SwiperContent img={values[2]} />
       </SwiperSlide>
       <SwiperSlide className="slide">
-        <SwiperContent img={images[3]?.img5} />
+        <SwiperContent img={values[3]} />
       </SwiperSlide>
       <SwiperSlide className="slide">
-        <SwiperContent img={images[4]?.img1} />
+        <SwiperContent img={values[4]} />
       </SwiperSlide>
       <SwiperSlide className="slide">
-        <SwiperContent img={images[5]?.img4} />
+        <SwiperContent img={values[5]} />
+      </SwiperSlide>
+      <SwiperSlide className="slide">
+        <SwiperContent img={values[6]} />
       </SwiperSlide>
     </Swiper>
   );

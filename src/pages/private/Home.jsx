@@ -10,9 +10,10 @@ import { CardPresentation } from "../../components/CardPresentation";
 const SwiperContentTotal = lazy(() =>
   import("../../components/Home/SwiperContentTotal")
 );
+const Footer = lazy(() => import("../../components/Footer"));
 
 export function Home() {
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState(null);
 
   useEffect(() => {
     const dataHomePage = JSON.parse(localStorage.getItem("homePage"));
@@ -22,9 +23,9 @@ export function Home() {
       const queryCollection = collection(db, "homePage");
       getDocs(queryCollection).then((res) => {
         const results = res.docs.map((item) => ({
-          id: item.id,
           ...item.data(),
         }));
+        console.log(results)
         setImages(results);
         localStorage.setItem("homePage", JSON.stringify(results));
       });
@@ -74,22 +75,19 @@ export function Home() {
           />
         </picture>
       </section>
-      <section className="w-full py-32 bg-black text-white max-[500px]:py-5 flex flex-col gap-14">
+      <section className="w-full py-28 bg-black text-white max-[500px]:py-5 flex flex-col gap-14">
         <Suspense fallback={<Loading />}>
-          <SwiperContentTotal images={images} />
-          <SwiperContentTotal images={images} />
-          <SwiperContentTotal images={images} />
-          <SwiperContentTotal images={images} />
+          {images && (
+            <>
+              <SwiperContentTotal title='Películas Populares' images={images[1]} />
+              <SwiperContentTotal title='Originales de Netflix' images={images[2]} />
+              <SwiperContentTotal title='Adolescentes' images={images[3]} />
+              <SwiperContentTotal title='Para toda la familia' images={images[0]} />
+            </>
+          )}
         </Suspense>
       </section>
-      <footer className="w-full text-white grid place-content-center bg-black py-7">
-        <div>
-          <p>
-            Derechos <span className="font-bold">@Cafecito</span>
-          </p>
-          <p className="text-center">2023</p>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }

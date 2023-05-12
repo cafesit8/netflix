@@ -70,6 +70,7 @@ export default function CreateUser() {
         <div className="flex flex-col">
           <label className="mb-2">Elige color del Avatar:</label>
           <select
+            defaultValue={azul}
             name="color"
             className="bg-[#292929] border outline-none text-white rounded-lg py-2 px-3"
             {...register("photo")}
