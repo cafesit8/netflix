@@ -23,7 +23,6 @@ export function Home() {
         const results = res.docs.map((item) => ({
           ...item.data(),
         }));
-        console.log(results)
         setImages(results);
         localStorage.setItem("homePage", JSON.stringify(results));
       });
