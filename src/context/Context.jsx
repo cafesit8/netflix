@@ -67,7 +67,7 @@ export function ContextProvider({children}) {
       userList,
       setPhoto,
       refUserName,
-      setUserList
+      setUserList,
     }}>
       {children}
     </Context.Provider>

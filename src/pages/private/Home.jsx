@@ -67,7 +67,7 @@ export function Home() {
           <img
             fetchpriority="hight"
             className="object-cover w-full h-full"
-            alt="imagen de fondo"
+            alt="imagen del home"
             src={img1}
           />
         </picture>
@@ -77,9 +77,6 @@ export function Home() {
           {images && (
             <>
               <SwiperContentTotal title='Películas Populares' images={images[1]} />
-              <SwiperContentTotal title='Originales de Netflix' images={images[2]} />
-              <SwiperContentTotal title='Adolescentes' images={images[3]} />
-              <SwiperContentTotal title='Para toda la familia' images={images[0]} />
             </>
           )}
         </Suspense>

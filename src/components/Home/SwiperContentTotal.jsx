@@ -3,7 +3,7 @@ import { Suspense, lazy } from 'react';
 const Swiper = lazy(() => import('./Swiper'))
 
 export default function({images, title}) {
-  const values = Object.values(images)
+  const values = Object.values(images).map(i => i.portada)
   return (
     <div className="w-[1500px] max-[1500px]:w-[92%] m-auto max-[420px]:mr-0">
       <h2 className="text-[25px] mb-3 max-[500px]:text-[20px]">
