@@ -12,6 +12,7 @@ nav::before{
 .degradate{
     background: linear-gradient(90deg, rgba(0,0,0,1) 20%, rgba(103,89,255,0) 60%);
 }
+
 .degradate::after{
     content: '';
     position: absolute;
@@ -33,9 +34,9 @@ nav::before{
     height: 100%;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
     .degradate{
-        background: none;
+        background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(103,89,255,0) 0%);
     }
 
     .picture{

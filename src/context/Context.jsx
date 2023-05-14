@@ -1,7 +1,8 @@
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
 import { createContext, useEffect, useRef, useState } from 'react'
-import {auth} from '../firebase/firebase'
+import {auth, db} from '../firebase/firebase'
 import { v4 } from 'uuid'
+import { collection, getDocs } from 'firebase/firestore'
 
 export const Context = createContext()
 
@@ -11,6 +12,24 @@ export function ContextProvider({children}) {
   const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useState(true)
   const refUserName = useRef(null)
+  const [images, setImages] = useState(null);
+
+  useEffect(() => {
+    const dataHomePage = JSON.parse(localStorage.getItem("homePage"));
+    if (dataHomePage !== null) {
+      setImages(dataHomePage);
+    } else {
+      console.log('se hizo la petición')
+      const queryCollection = collection(db, "homePage");
+      getDocs(queryCollection).then((res) => {
+        const results = res.docs.map((item) => ({
+          ...item.data(),
+        }));
+        setImages(results);
+        localStorage.setItem("homePage", JSON.stringify(results));
+      });
+    }
+  }, []);
 
   const addUserToTheList = (data) => {
     setUserList([
@@ -68,6 +87,8 @@ export function ContextProvider({children}) {
       setPhoto,
       refUserName,
       setUserList,
+      setImages,
+      images
     }}>
       {children}
     </Context.Provider>

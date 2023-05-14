@@ -10,7 +10,7 @@ export default function() {
   const {logOut, photo} = useContext(Context)
 
   return (
-    <nav className='z-20 w-full flex justify-between items-center px-[5%] fixed h-[80px]'>
+    <nav className='z-20 w-full flex justify-between items-center px-[5%] top-0 fixed h-[80px]'>
       <img alt="logo Netflix" fetchpriority="high" src={logo} className="max-[650px]:w-[100px] max-[360px]:w-[80px]" />
       <ul className="list flex items-center gap-20 max-[800px]:gap-4">
         <li className="text-[20px] font-bold max-[600px]:font-normal cursor-pointer">
@@ -25,7 +25,7 @@ export default function() {
       </ul>
       <div className="flex items-center gap-5">
         <Avatar photo={photo} />
-        <div onClick={logOut} className="flex flex-col">
+        <div onClick={logOut} className="flex flex-col max-[600px]:w-[50px]">
           <IoLogOut className="text-[50px] m-auto cursor-pointer" />
           <span className="text-center font-medium">Salir</span>
         </div>

@@ -1,33 +1,16 @@
-import { Suspense, lazy, useEffect, useState } from "react";
+import { Suspense, lazy, useContext } from "react";
 import { Loading } from "../public/Loading";
 import { Btn } from "../../components/Btn";
 import img1 from "../../img/homeStrangerThings.webp";
-import "../../styles/Private/home.css";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase/firebase";
 import { CardPresentation } from "../../components/CardPresentation";
+import { Context } from "../../context/Context";
 const SwiperContentTotal = lazy(() => import("../../components/Home/SwiperContentTotal"));
 const Footer = lazy(() => import("../../components/Footer"));
 const Nav = lazy(() => import('../../components/NavBar'))
+import "../../styles/Private/home.css";
 
 export function Home() {
-  const [images, setImages] = useState(null);
-
-  useEffect(() => {
-    const dataHomePage = JSON.parse(localStorage.getItem("homePage"));
-    if (dataHomePage !== null) {
-      setImages(dataHomePage);
-    } else {
-      const queryCollection = collection(db, "homePage");
-      getDocs(queryCollection).then((res) => {
-        const results = res.docs.map((item) => ({
-          ...item.data(),
-        }));
-        setImages(results);
-        localStorage.setItem("homePage", JSON.stringify(results));
-      });
-    }
-  }, []);
+  const { images } = useContext(Context)
 
   return (
     <>
@@ -77,6 +60,8 @@ export function Home() {
           {images && (
             <>
               <SwiperContentTotal title='Películas Populares' images={images[1]} />
+              <SwiperContentTotal title='Originales de Netflix' images={images[2]} />
+              <SwiperContentTotal title='Para toda la familia' images={images[0]} />
             </>
           )}
         </Suspense>

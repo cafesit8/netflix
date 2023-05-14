@@ -1,13 +1,20 @@
-export function SwiperContent({ img }) {
+import { Link, useNavigate } from "react-router-dom";
+
+export function SwiperContent({ img, values }) {
+  const navigate = useNavigate();
+  const handleClick = () => navigate(`/${img.title}`);
   return (
-    <div className="w-full h-full cursor-pointer hover:scale-105 duration-150">
+    <div
+      onClick={handleClick}
+      className="w-full h-full cursor-pointer hover:scale-105 duration-150"
+    >
       <img
         width="100%"
         height="100%"
         fetchpriority="low"
-        alt={img}
+        alt={img.portada}
         className="object-cover w-full h-full"
-        src={img}
+        src={img.portada}
       />
     </div>
   );

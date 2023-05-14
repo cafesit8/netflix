@@ -33,9 +33,9 @@ export default function ({ values }) {
         },
       }}
     >
-      {values.map(img => (
-        <SwiperSlide key={img} className="slide">
-          <SwiperContent img={img} />
+      {values.map(value => (
+        <SwiperSlide key={value.title} className="slide">
+          <SwiperContent values={values} img={value} />
         </SwiperSlide>
       ))}
     </Swiper>

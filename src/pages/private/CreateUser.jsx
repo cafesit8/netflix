@@ -9,7 +9,7 @@ import amarillo from "../../img/avatarNetflixAmarillo.jpg";
 import verde from "../../img/avatarNetflixVerde.jpg";
 
 export default function CreateUser() {
-  const { addUserToTheList, userList, setUserList } = useContext(Context);
+  const { addUserToTheList, userList } = useContext(Context);
   const {
     register,
     formState: { errors },
@@ -58,6 +58,7 @@ export default function CreateUser() {
             {...register("userName", {
               required: true,
               minLength: 3,
+              maxLength: 10
             })}
           />
           {errors.userName?.type === "required" && (
@@ -65,6 +66,9 @@ export default function CreateUser() {
           )}
           {errors.userName?.type === "minLength" && (
             <span className="text-red-500 ml-1">Mïnimo son 3 carateres</span>
+          )}
+          {errors.userName?.type === "maxLength" && (
+            <span className="text-red-500 ml-1">Máximo son 10 carateres</span>
           )}
         </div>
         <div className="flex flex-col">
