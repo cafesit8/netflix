@@ -13,6 +13,7 @@ export function ContextProvider({children}) {
   const [loading, setLoading] = useState(true)
   const refUserName = useRef(null)
   const [images, setImages] = useState(null);
+  const [toogle, setToogle] = useState(false);
 
   useEffect(() => {
     const dataHomePage = JSON.parse(localStorage.getItem("homePage"));
@@ -88,7 +89,9 @@ export function ContextProvider({children}) {
       refUserName,
       setUserList,
       setImages,
-      images
+      images,
+      toogle,
+      setToogle
     }}>
       {children}
     </Context.Provider>
